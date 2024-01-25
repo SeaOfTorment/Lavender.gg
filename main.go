@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"text/template"
 )
 
@@ -55,7 +56,7 @@ func (handler Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func searchMux(pf url.Values, w http.ResponseWriter) {
 	if len(pf["Username"][0]) != 0 {
-		resp, err := http.Get("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+pf["Username"][0]+"?api_key=RGAPI-271e583c-d67b-45dc-b2be-bf21a5a24f58")
+		resp, err := http.Get("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+pf["Username"][0]+"?api_key="+os.Getenv("api"))
 		if err != nil {
   		log.Fatalln(err)
 		}
