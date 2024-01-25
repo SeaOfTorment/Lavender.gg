@@ -11,7 +11,6 @@ import (
 	"text/template"
 )
 
-//Types
 type Handler int
 
 type stats struct {
@@ -20,10 +19,8 @@ type stats struct {
 	Pfp int `json:"profileIconId"`
 }
 
-//Globals
 var tpl *template.Template
 
-//Code
 func init() {
 	tpl = template.Must(template.ParseGlob("Templates/*"))
 }
