@@ -37,7 +37,6 @@ func main() {
 func (handler Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	r.ParseMultipartForm(1000000)
 	if r.URL.Path == "/" {
-		//fmt.Println(r.PostForm)
 		if len(r.PostForm) == 0 {
 			tpl.ExecuteTemplate(w, "main.gohtml", nil)
 		} else if len(r.PostForm) == 2 {
