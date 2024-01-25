@@ -37,7 +37,7 @@ func main() {
 func (handler Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	r.ParseMultipartForm(1000000)
 	if r.URL.Path == "/" {
-		fmt.Println(r.PostForm)
+		//fmt.Println(r.PostForm)
 		if len(r.PostForm) == 0 {
 			tpl.ExecuteTemplate(w, "main.gohtml", nil)
 		} else if len(r.PostForm) == 2 {
@@ -50,9 +50,7 @@ func (handler Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	} else {
 		fmt.Fprintln(w, "404:1")
 	}
-
 }
-
 
 func searchMux(pf url.Values, w http.ResponseWriter) {
 	if len(pf["Username"][0]) != 0 {
@@ -64,10 +62,10 @@ func searchMux(pf url.Values, w http.ResponseWriter) {
     if err != nil {
         log.Fatal(err)
     }
-
 		loaded_stats := stats{}
     r := []byte(responseData)
 		err = json.Unmarshal(r, &loaded_stats)
+		fmt.Println("Query: " + loaded_stats.User)
 		tpl.ExecuteTemplate(w, "main.gohtml", loaded_stats)
 		return
 	}
